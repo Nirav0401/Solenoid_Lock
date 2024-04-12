@@ -1,0 +1,8 @@
+../Core/Src/main.c:71:6:solenoid_release	16	static
+../Core/Src/main.c:86:6:solenoid_lock	16	static
+../Core/Src/main.c:105:5:main	8	static
+../Core/Src/main.c:285:6:SystemClock_Config	96	static
+../Core/Src/main.c:328:13:MX_TIM21_Init	48	static
+../Core/Src/main.c:387:13:MX_USART5_UART_Init	8	static
+../Core/Src/main.c:422:13:MX_GPIO_Init	64	static
+../Core/Src/main.c:494:6:Error_Handler	8	static,ignoring_inline_asm
