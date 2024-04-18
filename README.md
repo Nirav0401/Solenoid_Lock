@@ -1,6 +1,6 @@
-# Solenoid Lock on a ADC Interface
+# Solenoid Lock using PWM Signals
 
-This example shows how to read temperature value on a ADC (Analog-to-Digital Converter) conversion using DMA (Direct Memory Access) and display them on console log. It's a basic setup that you can build upon STM32 Nucleo Developement Board. 
+This example shows how to operate solenoid lock using PWM signals which is generally used in EV cars where gun need to be locked while communication processes are ongoing. It's a basic setup that you can build upon STM32 Developement Board. 
 
 ## How to use example
 
