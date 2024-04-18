@@ -6,26 +6,27 @@ This example shows how to operate solenoid lock using PWM signals which is gener
 
 ### Hardware Required
 
-The example can be run on any commonly available STM32 based development board. You will need a USB cable to connect the
+The example can be run on STM32 (STM32L073VBT) based development board. You will need a USB cable to connect the
 development board to a computer.
 
 ### Setup the Hardware
 
-ADC Interface -> sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
-              -> sConfig.SamplingTime = ADC_SAMPLETIME_112CYCLES;
-              -> hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+Here is the circuit of solenoid lock. 
+[Solenoid_Lock_Circuit.png](https://github.com/Nirav0401/Solenoid_Lock/blob/main/Solenoid_Lock_Circuit.png)
+
+lock_cntrl_1 -> Pin No 56 -> GPIO9 - PD9
+cont_cntrl_1 -> Pin No 55 -> GPIO8 - PD8
+fb1 -> Pin No 81 -> TIM21_CH1 -> PD0 for PWM generation
+
+You need to connect solenoid device to 5V Input and other two connections (V1 and V2) for making the device lock and unlock using pwm.
 
 ## Example Output
 
 ````
-HAL_ADC_Start_DMA(&hadc1, &ADC_VAL, 1);
-- This function starts an ADC conversion in DMA mode.
+void solenoid_lock (void);
+- This function activates the solenoid to lock. It sets the lock_cntrl_1 pin to high to power the solenoid coil. The cont_cntrl_1 pin remains low which activates V1 pin, and a PWM signal is generated on the fb1 pin.
 
-&hadc1 -> This is a pointer to the ADC handle (hadc1 in this case), which is a structure containing ADC configuration and state information.
-&ADC_VAL -> This is a pointer to the memory location where the ADC conversion result will be stored.
-1 -> This specifies the number of ADC conversions to perform.
-
-printf("Temp value is %0.2f\n", Temp);
-You will receive the logs of temperature reading on the console.
+void solenoid_release (void);
+- This function deactivates the solenoid and as a result releasing its lock. It sets the lock_cntrl_1 pin to high to power the solenoid coil, cont_cntrl_1 pin to high to trigger the Q9 mosfet which further activates V2 pin and a PWM signal is generated on the fb1 pin.
 
 ````
